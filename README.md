@@ -21,12 +21,16 @@ npm run preview
 
 ## Personalização
 
-- **Conteúdo institucional** — Em `src/data/site.ts`, configure `school.logo`, `school.photo` e `school.social` com arquivos autorizados e endereços oficiais. O símbolo atual identifica o site. Edite a apresentação em `src/sections/School.tsx` quando houver texto institucional aprovado.
+- **Conteúdo institucional** — Em `src/data/site.ts`, configure `school.logo`, `school.photo`, `school.description`, `school.contact` e `school.social` com arquivos autorizados e endereços oficiais. O símbolo atual identifica o site. Edite a apresentação em `src/sections/School.tsx` quando houver texto institucional aprovado.
 - **Projetos** — Cadastre título, resumo, detalhes, tecnologias e capa na coleção `projects`. O campo `cover` corresponde ao nome de um WebP em `public/art/`, sem extensão. O campo opcional `video` recebe a URL de um vídeo compatível com HTML5. Use `demo: false` para trabalhos reais autorizados.
 - **Layout** — As seções ficam em `src/sections/`, a navegação em `src/components/` e os estilos responsivos em `src/styles/site.css`. As fontes são hospedadas com a aplicação.
-- **Visualização neural** — `src/three/Field.tsx` desenha partículas e conexões com React Three Fiber, Drei e Three.js. A imagem local do núcleo permanece visível durante o carregamento, em dispositivos sem WebGL 2 e com movimento reduzido.
+## Experiências de descoberta
 
-As ferramentas e os projetos exemplificam conceitos da área. Para substituir os exemplos, reunir projetos autorizados, imagens, tecnologias e vídeos dos estudantes.
+O núcleo e o mascote são construídos com geometria procedural. O laboratório carrega a cena 3D sob demanda e oferece os mesmos instrumentos por botões. As imagens WebP mantêm as experiências utilizáveis com movimento reduzido ou quando WebGL está indisponível. Os materiais e fontes são locais.
+
+A missão usa um classificador didático por proximidade à média. Os exemplos registrados em A e B definem os centros dos grupos, e o teste mede a distância do novo sinal a cada centro. Empates recebem feedback próprio. O treino existe apenas na sessão da página.
+
+A coleção de projetos começa vazia. A primeira obra cadastrada ganha destaque. Inclua apenas projetos e mídias autorizados, com descrição de capa em `coverAlt`.
 
 ## Publicação no GitHub Pages
 

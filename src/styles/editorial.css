@@ -1,0 +1,328 @@
+.exhibit,
+.tool-bench,
+.question-room,
+.project-exhibit,
+.school-print {
+  scroll-margin-top: 80px;
+  padding-block: clamp(48px, 6vw, 94px);
+}
+:is(.exhibit, .tool-bench, .project-exhibit, .question-room, .school-print) h2 {
+  font:
+    600 clamp(2rem, 4.5vw, 4.4rem)/1.02 "Space Grotesk Variable",
+    sans-serif;
+  letter-spacing: -0.055em;
+  margin: 0 0 0.7em;
+}
+:is(.exhibit, .tool-bench, .project-exhibit, .question-room, .school-print) p {
+  line-height: 1.65;
+}
+.exhibit {
+  background: #112a46;
+  color: #f4f7fa;
+}
+.area-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(24px, 5vw, 84px);
+}
+.area-index {
+  align-self: start;
+  border-top: 1px solid #60758a;
+}
+.area-index button,
+.question-item button {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 14px;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #415973;
+  background: transparent;
+  padding: 14px 4px;
+  color: inherit;
+  font:
+    500 clamp(1rem, 1.45vw, 1.4rem)/1.25 "Space Grotesk Variable",
+    sans-serif;
+}
+.area-index button span {
+  color: #95b9d5;
+  transition: transform 0.2s;
+}
+.area-index button[aria-pressed="true"] {
+  color: #ffbd81;
+}
+.area-index button[aria-pressed="true"] span {
+  color: #ffbd81;
+  transform: rotate(45deg);
+}
+.area-display {
+  margin: 0;
+  background: #0b1d31;
+  border: 1px solid #34516a;
+  align-self: start;
+}
+.area-display img {
+  width: 100%;
+  aspect-ratio: 760/340;
+  object-fit: cover;
+}
+.area-display figcaption {
+  padding: clamp(20px, 3vw, 38px);
+  border-top: 1px solid #34516a;
+}
+.area-display h3,
+.exhibition-empty h3,
+.published-works h3 {
+  font:
+    550 clamp(1.45rem, 2.2vw, 2.2rem)/1.12 "Space Grotesk Variable",
+    sans-serif;
+  letter-spacing: -0.035em;
+  margin: 0 0 10px;
+}
+.area-display p {
+  margin: 0;
+  color: #c5d6e1;
+}
+.tool-bench {
+  background: #dae6ed;
+  color: #112a46;
+  padding-block: 42px;
+}
+.tool-bench .wrap {
+  display: flex;
+  align-items: start;
+  gap: 5vw;
+}
+.tool-bench h2 {
+  font-size: clamp(1.55rem, 2.7vw, 2.4rem);
+  max-width: 7em;
+}
+.tool-bench dl {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  justify-content: space-between;
+  margin: 0;
+}
+.tool-bench dt,
+.school-location {
+  font:
+    600 0.74rem ui-monospace,
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.tool-bench dd {
+  margin: 8px 0 0;
+  max-width: 19em;
+  font-size: 0.93rem;
+}
+.project-exhibit {
+  background: #eaf0f3;
+  color: #10263c;
+}
+.exhibition-empty {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.7fr) 1fr;
+  align-items: center;
+  border: 1px solid #abbcc8;
+  min-height: 260px;
+  background: #f4f7fa;
+}
+.exhibition-empty > div:last-child {
+  padding: clamp(24px, 4vw, 60px);
+}
+.exhibition-empty p,
+.question-room p,
+.school-print p {
+  max-width: 56ch;
+}
+.exhibition-empty a,
+.school-print a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 650;
+}
+.display-plinth {
+  height: 100%;
+  min-height: 210px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(ellipse at 50% 55%, #2e5370, #152f45 70%);
+}
+.display-plinth i,
+.display-plinth b,
+.display-plinth em {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 105px;
+  height: 105px;
+  transform: translate(-50%, -20%) rotate(-30deg) skew(30deg) scaleY(0.8);
+  border: 1px solid #95b9d5;
+  background: #456885;
+  box-shadow:
+    -8px 12px 0 #294961,
+    -16px 24px 0 #203e54;
+}
+.display-plinth b {
+  width: 83px;
+  height: 83px;
+  background: transparent;
+  transform: translate(-50%, -48%) rotate(-30deg) skew(30deg) scaleY(0.8);
+  box-shadow: none;
+  border: 1px dashed #bed1dc;
+}
+.display-plinth em {
+  width: 20px;
+  height: 20px;
+  background: #f5a65b;
+  border: 0;
+  box-shadow: -3px 4px 0 #915d32;
+  transform: translate(-50%, -62px) rotate(-30deg) skew(30deg) scaleY(0.8);
+}
+.published-works {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.published-works article:first-child {
+  grid-column: 1/-1;
+}
+.published-works img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+.project-exhibit dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 32px;
+  background: #112a46;
+  color: white;
+  width: min(90vw, 580px);
+  max-height: 85vh;
+  overflow: auto;
+}
+.project-exhibit dialog::backdrop {
+  background: #081426bb;
+}
+.question-room {
+  background: #f4f7fa;
+  color: #112a46;
+}
+.question-room .wrap,
+.school-print .wrap {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  align-items: start;
+  gap: 8vw;
+}
+.question-room h2 {
+  max-width: 8em;
+}
+.question-item:first-child {
+  border-top: 1px solid #a3b6c4;
+}
+.question-item h3 {
+  margin: 0;
+}
+.question-item button {
+  color: #112a46;
+  border-color: #a3b6c4;
+}
+.question-item button span {
+  color: #356b9a;
+  font-size: 1.4rem;
+}
+.question-item p {
+  margin: 0;
+  padding: 16px 0 20px;
+}
+.school-print {
+  background: #112a46;
+  color: #f4f7fa;
+  border-block: 1px solid #46637b;
+}
+.school-print h2 {
+  font-size: clamp(2.2rem, 4.6vw, 4.5rem);
+  margin: 14px 0 0;
+}
+.school-print .school-location {
+  color: #a9d0e7;
+  margin: 0;
+}
+.school-print .school-logo {
+  max-width: 85px;
+  margin-bottom: 15px;
+}
+.school-print p {
+  margin: 0;
+}
+.school-print a {
+  margin-right: 16px;
+}
+@media (max-width: 800px) {
+  .tool-bench .wrap {
+    display: block;
+  }
+  .area-layout {
+    grid-template-columns: 0.9fr 1fr;
+    gap: 20px;
+  }
+  .question-room .wrap,
+  .school-print .wrap {
+    gap: 5vw;
+  }
+}
+@media (max-width: 640px) {
+  .area-layout,
+  .exhibition-empty,
+  .question-room .wrap,
+  .school-print .wrap,
+  .published-works {
+    grid-template-columns: 1fr;
+  }
+  .area-index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 12px;
+  }
+  .area-index button {
+    font-size: 0.93rem;
+  }
+  .area-display img {
+    max-height: 185px;
+  }
+  .tool-bench dl {
+    display: grid;
+    gap: 12px;
+  }
+  .tool-bench dl > div {
+    border-top: 1px solid #acbdca;
+    padding-top: 10px;
+  }
+  .tool-bench dd {
+    max-width: none;
+  }
+  .display-plinth {
+    min-height: 150px;
+  }
+  .question-room .wrap,
+  .school-print .wrap {
+    gap: 24px;
+  }
+  .school-print h2 {
+    margin-bottom: 0;
+  }
+}

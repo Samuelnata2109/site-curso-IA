@@ -1,0 +1,77 @@
+.core-view {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  isolation: isolate;
+}
+.core-view .core-trigger {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+  color: #f4f7fa;
+}
+.core-view .core-poster,
+.core-view .core-canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  mask-image: none;
+  transform: none;
+}
+.core-view .core-canvas {
+  touch-action: pan-y;
+}
+.core-hint {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 3px;
+  background: #0a1726e8;
+  border: 1px solid #48657c;
+  color: #cfdfec;
+  font:
+    11px ui-monospace,
+    monospace;
+  letter-spacing: 0.05em;
+}
+.core-hint span {
+  font-size: 15px;
+  color: #f5a65b;
+}
+.core-trigger:hover .core-hint,
+.core-trigger:focus-visible .core-hint {
+  border-color: #f5a65b;
+}
+.core-view .core-feedback:not(:empty) {
+  position: absolute;
+  bottom: calc(2% + 39px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 82%;
+  background: #081426f5;
+  color: #f4f7fa;
+  border-left: 2px solid #f5a65b;
+  padding: 9px 12px;
+  text-align: left;
+  font:
+    13px/1.4 "Inter Variable",
+    sans-serif;
+  pointer-events: none;
+}

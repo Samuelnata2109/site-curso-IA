@@ -1,0 +1,113 @@
+.laboratory {
+  background: #112a46;
+  color: #f4f7fa;
+  padding: clamp(64px, 8vw, 112px) 0;
+  scroll-margin-top: 80px;
+}
+.lab-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 30px;
+}
+.lab-intro h2 {
+  max-width: 12ch;
+  font:
+    600 clamp(2.6rem, 5vw, 5rem)/0.98 "Space Grotesk Variable",
+    sans-serif;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+.lab-intro p,
+.lab-result p {
+  font:
+    400 1rem/1.65 "Inter Variable",
+    sans-serif;
+  color: #c0d3e2;
+  max-width: 32ch;
+  margin: 0;
+}
+.lab-panel {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  border: 1px solid #4a6579;
+  background: #0d2135;
+}
+.lab-view {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.65;
+  align-self: center;
+  background: #0d2135;
+}
+.lab-view img,
+.lab-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.lab-canvas {
+  background: #0d2135;
+}
+.lab-console {
+  padding: clamp(20px, 3vw, 44px);
+  border-left: 1px solid #3e586d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+.lab-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.lab-select button {
+  min-height: 44px;
+  line-height: 1.3;
+  color: #d3e3f2;
+  border: 1px solid #4c667c;
+  background: transparent;
+  font-size: 0.85rem;
+  text-align: left;
+  padding: 8px 11px;
+}
+.lab-select button[aria-pressed="true"] {
+  background: #f5a65b;
+  color: #081426;
+  border-color: #f5a65b;
+}
+.lab-result h3 {
+  font:
+    600 clamp(1.3rem, 2vw, 1.75rem)/1.15 "Space Grotesk Variable",
+    sans-serif;
+  margin: 0 0 10px;
+}
+.lab-result p {
+  max-width: 46ch;
+}
+.lab-select button:focus-visible {
+  outline: 3px solid #f4f7fa;
+  outline-offset: 2px;
+}
+@media (max-width: 800px) {
+  .lab-panel {
+    grid-template-columns: 1fr;
+  }
+  .lab-console {
+    border-left: 0;
+    border-top: 1px solid #3e586d;
+  }
+  .lab-intro {
+    display: block;
+  }
+  .lab-intro p {
+    margin-top: 18px;
+  }
+  .lab-view {
+    aspect-ratio: 1.65;
+  }
+}

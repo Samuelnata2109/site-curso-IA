@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Aperture, Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { nav, school } from "../data/site";
 export function Brand() {
   return (
@@ -7,10 +7,14 @@ export function Brand() {
       {school.logo ? (
         <img width="36" src={school.logo} alt="" />
       ) : (
-        <Aperture size={34} />
+        <span className="signal-mark" aria-hidden="true">
+          <b />
+          <b />
+          <b />
+        </span>
       )}
-      <span>GUIOMAR</span>
-      <i>/</i>
+      <span>Guiomar</span>
+
       <small>IA</small>
     </a>
   );
@@ -59,10 +63,15 @@ export default function Header() {
         >
           {open ? <X /> : <Menu />}
         </button>
-        <nav id="navigation" className={open ? "opened" : ""}>
+        <nav
+          aria-label="Navegação principal"
+          id="navigation"
+          className={open ? "opened" : ""}
+        >
           {nav.map(([id, label]) => (
             <a
               key={id}
+              aria-current={active === id ? "location" : undefined}
               className={active === id ? "active" : ""}
               href={"#" + id}
               onClick={() => set(false)}

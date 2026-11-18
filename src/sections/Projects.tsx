@@ -1,58 +1,81 @@
 import { useRef, useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
-import Section from "../components/Section";
 import { projects, type Project } from "../data/site";
-export default function Projects() {
-  const [project, set] = useState<Project>(),
-    dialog = useRef<HTMLDialogElement>(null);
+
+function EmptyExhibition() {
   return (
-    <Section id="projetos" label="GALERIA" title="Projetos dos estudantes">
-      <div className="cards">
-        {projects.map((p) => (
-          <article key={p.title}>
-            <img
-              className="cover"
-              src={`${import.meta.env.BASE_URL}art/${p.cover}.webp`}
-              loading="lazy"
-              alt=""
-            />
-            {p.demo && <small>EXEMPLO DEMONSTRATIVO</small>}
-            <h3>{p.title}</h3>
-            <p>{p.text}</p>
-            <p className="tags">{p.tools.join(" · ")}</p>
-            <button
-              onClick={() => {
-                set(p);
-                dialog.current?.showModal();
-              }}
-            >
-              Ver detalhes <ArrowUpRight size={16} />
-            </button>
-          </article>
-        ))}
+    <div className="exhibition-empty">
+      <div className="display-plinth" aria-hidden="true">
+        <i />
+        <b />
+        <em />
       </div>
-      <dialog
-        ref={dialog}
-        aria-labelledby="project-title"
-        onClose={() => set(undefined)}
-      >
-        <button
-          className="close"
-          aria-label="Fechar detalhes"
-          onClick={() => dialog.current?.close()}
-        >
-          <X />
-        </button>
-        {project && (
-          <>
-            {project.demo && <small>EXEMPLO DEMONSTRATIVO</small>}
-            <h3 id="project-title">{project.title}</h3>
-            <p>{project.detail}</p>
-            <p className="tags">{project.tools.join(" · ")}</p>
-            {project.video && <video controls src={project.video} />}
-          </>
+      <div>
+        <h3>A exposição está aberta para as próximas ideias.</h3>
+        <p>
+          Ainda não há projetos cadastrados. Este espaço vai reunir imagens,
+          vídeos e relatos de como os estudantes criaram seus trabalhos.
+        </p>
+        <a href="#missao">
+          Experimentar a missão <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+export default function Projects() {
+  const [project, setProject] = useState<Project>();
+  const dialog = useRef<HTMLDialogElement>(null);
+  return (
+    <section id="projetos" className="project-exhibit">
+      <div className="wrap">
+        <h2>Projetos dos estudantes</h2>
+        {projects.length === 0 ? (
+          <EmptyExhibition />
+        ) : (
+          <div className="published-works">
+            {projects.map((p) => (
+              <article key={p.title}>
+                <img
+                  src={import.meta.env.BASE_URL + "art/" + p.cover + ".webp"}
+                  alt={p.coverAlt ?? ""}
+                  loading="lazy"
+                />
+                {p.demo && <small>Exemplo demonstrativo</small>}
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+                <p>{p.tools.join(" · ")}</p>
+                <button
+                  onClick={() => {
+                    setProject(p);
+                    dialog.current?.showModal();
+                  }}
+                >
+                  Ver detalhes de {p.title}
+                </button>
+              </article>
+            ))}
+          </div>
         )}
-      </dialog>
-    </Section>
+        <dialog
+          ref={dialog}
+          aria-labelledby="work-title"
+          onClose={() => setProject(undefined)}
+        >
+          {project && (
+            <>
+              <button autoFocus onClick={() => dialog.current?.close()}>
+                Fechar
+              </button>
+              <h3 id="work-title">{project.title}</h3>
+              <p>{project.detail}</p>
+              <p>{project.tools.join(" · ")}</p>
+              {project.video && (
+                <video controls preload="metadata" src={project.video} />
+              )}
+            </>
+          )}
+        </dialog>
+      </div>
+    </section>
   );
 }

@@ -1,6 +1,8 @@
 import { createRoot } from "react-dom/client";
 import { MotionConfig } from "motion/react";
 import Header, { Brand } from "./components/Header";
+import Mission from "./sections/Mission";
+import Lab from "./sections/Lab";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Areas from "./sections/Areas";
@@ -21,7 +23,9 @@ createRoot(document.getElementById("root")!).render(
     <main id="conteudo">
       <Hero />
       <About />
+      <Mission />
       <Areas />
+      <Lab />
       <Technologies />
       <Projects />
       <Careers />
@@ -30,8 +34,9 @@ createRoot(document.getElementById("root")!).render(
     <footer>
       <div className="wrap">
         <Brand />
+        <h2 className="footer-title">O futuro começa com a sua curiosidade.</h2>
         <p>EEEP Guiomar Belchior Aguiar · Cariré, Ceará</p>
-        <nav>
+        <nav aria-label="Links do rodapé">
           {nav.map(([id, t]) => (
             <a key={id} href={"#" + id}>
               {t}

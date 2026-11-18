@@ -1,39 +1,22 @@
-import Section from "../components/Section";
-import {
-  Code2,
-  Layers,
-  Flame,
-  ChartScatter,
-  Table,
-  Notebook,
-  Focus,
-  Smile,
-} from "lucide-react";
-const tools = [
-  ["Python", Code2],
-  ["TensorFlow", Layers],
-  ["PyTorch", Flame],
-  ["Scikit-learn", ChartScatter],
-  ["Pandas", Table],
-  ["Jupyter Notebook", Notebook],
-  ["OpenCV", Focus],
-  ["Hugging Face", Smile],
-] as const;
+const groups = [
+  ["Explorar dados", "Python · Pandas · Jupyter Notebook"],
+  ["Treinar modelos", "Scikit-learn · TensorFlow · PyTorch"],
+  ["Testar ideias", "OpenCV · Hugging Face"],
+];
 export default function Technologies() {
   return (
-    <Section id="tecnologias" label="FERRAMENTAS" title="Tecnologias da IA">
-      <p>
-        Exemplos do ecossistema de Inteligência Artificial para explorar dados,
-        treinar modelos e experimentar.
-      </p>
-      <div className="tools">
-        {tools.map(([title, Icon]) => (
-          <article key={title}>
-            <Icon />
-            {title}
-          </article>
-        ))}
+    <section id="tecnologias" className="tool-bench">
+      <div className="wrap">
+        <h2>Ferramentas da área</h2>
+        <dl>
+          {groups.map(([use, names]) => (
+            <div key={use}>
+              <dt>{use}</dt>
+              <dd>{names}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-    </Section>
+    </section>
   );
 }
