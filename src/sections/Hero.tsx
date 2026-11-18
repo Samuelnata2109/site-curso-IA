@@ -61,7 +61,7 @@ export default function Hero() {
           }}
         >
           <img
-            src="/art/neural.webp"
+            src={`${import.meta.env.BASE_URL}art/neural.webp`}
             alt="Núcleo neural formado por milhares de pontos azuis e órbitas interligadas"
           />
           {show && (

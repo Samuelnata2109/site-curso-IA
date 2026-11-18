@@ -12,7 +12,7 @@ export default function Projects() {
           <article key={p.title}>
             <img
               className="cover"
-              src={"/art/" + p.cover + ".webp"}
+              src={`${import.meta.env.BASE_URL}art/${p.cover}.webp`}
               loading="lazy"
               alt=""
             />

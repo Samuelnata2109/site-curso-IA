@@ -27,3 +27,15 @@ npm run preview
 - **Visualização neural** — `src/three/Field.tsx` desenha partículas e conexões com React Three Fiber, Drei e Three.js. A imagem local do núcleo permanece visível durante o carregamento, em dispositivos sem WebGL 2 e com movimento reduzido.
 
 As ferramentas e os projetos exemplificam conceitos da área. Para substituir os exemplos, reunir projetos autorizados, imagens, tecnologias e vídeos dos estudantes.
+
+## Publicação no GitHub Pages
+
+No GitHub, abra **Settings → Pages**. Em **Build and deployment → Source**,
+selecione **GitHub Actions**. Para a primeira publicação, abra **Actions →
+Publicar no GitHub Pages → Run workflow**, escolha a branch `main` e execute.
+Depois disso, cada push em `main` gera e publica o conteúdo de `dist/`. O endereço
+publicado aparece no ambiente `github-pages` quando o deploy termina.
+
+O Vite usa `/site-curso-IA/` como caminho base. Abra esse caminho ao testar
+com `npm run preview`. As imagens da pasta `public/art/` usam
+`import.meta.env.BASE_URL` para funcionar nesse subdiretório.
