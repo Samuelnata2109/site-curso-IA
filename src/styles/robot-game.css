@@ -1,0 +1,338 @@
+.teach-game {
+  background: #071c33;
+  color: #fff;
+  padding: clamp(40px, 6vw, 86px) 0;
+  scroll-margin-top: 75px;
+}
+.teach-game * {
+  box-sizing: border-box;
+}
+.teach-game button {
+  font:
+    600 14px "Inter Variable",
+    sans-serif;
+  cursor: pointer;
+  min-height: 46px;
+  border: 1px solid #6095bb;
+  border-radius: 7px;
+  background: #163b63;
+  color: #fff;
+  padding: 11px 15px;
+  transition:
+    background 0.16s,
+    border-color 0.16s;
+}
+.teach-game button:hover:not(:disabled) {
+  background: #285a85;
+  border-color: #fff;
+}
+.teach-game button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.teach-game button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.teach-game p {
+  line-height: 1.6;
+}
+.teach-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+.teach-heading h2 {
+  font-size: clamp(42px, 5.5vw, 78px);
+  margin: 10px 0 0;
+}
+.teach-heading > p {
+  max-width: 48ch;
+  color: #c4d7e6;
+  margin: 0;
+}
+.teach-label {
+  font:
+    600 10px ui-monospace,
+    monospace;
+  letter-spacing: 0.12em;
+  color: #bad6eb;
+}
+.teach-progress {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.teach-progress progress {
+  flex: 1;
+  min-width: 40px;
+  accent-color: #6095bb;
+  height: 7px;
+}
+.teach-missions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.teach-game .teach-mission {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  text-align: left;
+  min-height: 180px;
+  background: #102c4a;
+}
+.teach-number {
+  color: #9fbfd7;
+  font:
+    20px ui-monospace,
+    monospace;
+}
+.teach-mission strong {
+  font:
+    600 24px "Space Grotesk Variable",
+    sans-serif;
+}
+.teach-mission > span:last-child {
+  margin-top: auto;
+  font-size: 12px;
+  font-weight: 400;
+  color: #c4d7e6;
+}
+.teach-note {
+  font-size: 12px;
+  color: #c4d7e6;
+}
+.teach-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.teach-toolbar h3 {
+  font:
+    600 clamp(19px, 2vw, 29px) "Space Grotesk Variable",
+    sans-serif;
+  margin: 0;
+}
+.teach-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  border: 1px solid #406685;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.teach-stage {
+  position: relative;
+  min-width: 0;
+  height: 470px;
+  background: #071c33;
+}
+.teach-stage > div:has(canvas) {
+  height: 100% !important;
+}
+.teach-stage-bar {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  right: 14px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  font:
+    9px ui-monospace,
+    monospace;
+  color: #bed4e6;
+}
+.teach-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #071c33e8;
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 12px;
+  color: #dbe7ef;
+  pointer-events: none;
+}
+.teach-console {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  background: #102c4a;
+  border-left: 1px solid #406685;
+  min-width: 0;
+}
+.teach-console > p {
+  margin: 0;
+}
+.teach-console h4 {
+  font:
+    600 40px "Space Grotesk Variable",
+    sans-serif;
+  margin: 0;
+}
+.teach-game .teach-primary {
+  background: #fff;
+  color: #071c33;
+  border-color: #fff;
+}
+.teach-game .teach-primary:hover:not(:disabled) {
+  background: #dbe7ef;
+  color: #071c33;
+}
+.teach-buttons,
+.teach-bins,
+.teach-directions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.teach-choices {
+  display: grid;
+  gap: 8px;
+}
+.teach-console .teach-feedback {
+  padding: 12px 0 0;
+  border-top: 1px solid #406685;
+  font-size: 13px;
+  min-height: 55px;
+  color: #e2ecf3;
+}
+.teach-bins button:last-child {
+  background: #fff;
+  color: #071c33;
+}
+.teach-reset-link {
+  margin-top: 20px;
+}
+.teach-reset {
+  margin-top: 20px;
+}
+.teach-reset button {
+  margin: 0 8px 8px 0;
+}
+.teach-summary {
+  border-left: 3px solid #fff;
+  padding: 12px 20px;
+  background: #163b63;
+}
+.teach-fallback {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  padding: 44px 20px 64px;
+}
+.teach-flat-robot {
+  font: 64px/1 monospace;
+  color: #fff;
+}
+.teach-map {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  width: min(100%, 300px);
+}
+.teach-map span {
+  aspect-ratio: 1;
+  background: #285a85;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+}
+.teach-map .wall {
+  background: #6095bb;
+}
+.teach-loading {
+  padding: 80px 25px;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .teach-missions {
+    grid-template-columns: 1fr 1fr;
+  }
+  .teach-workspace {
+    grid-template-columns: 1fr;
+  }
+  .teach-stage {
+    height: 330px;
+  }
+  .teach-console {
+    border-left: 0;
+    border-top: 1px solid #406685;
+    padding: 20px;
+  }
+  .teach-heading {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .teach-toolbar {
+    flex-wrap: wrap;
+  }
+  .teach-toolbar h3 {
+    order: -1;
+    width: 100%;
+  }
+}
+@media (max-width: 540px) {
+  .teach-missions {
+    grid-template-columns: 1fr;
+  }
+  .teach-game .teach-mission {
+    min-height: 135px;
+    gap: 10px;
+    padding: 20px;
+  }
+  .teach-progress {
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .teach-progress progress {
+    order: 3;
+    flex-basis: 100%;
+  }
+  .teach-progress > span:last-child {
+    margin-left: auto;
+  }
+  .teach-stage {
+    height: 255px;
+  }
+  .teach-console {
+    padding: 16px;
+    gap: 10px;
+  }
+  .teach-console > p {
+    font-size: 13px;
+  }
+  .teach-toolbar button {
+    font-size: 12px;
+  }
+  .teach-console .teach-feedback {
+    font-size: 12px;
+    min-height: 42px;
+  }
+  .teach-stage-bar {
+    font-size: 8px;
+  }
+  .teach-heading h2 {
+    font-size: 45px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .teach-game * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
