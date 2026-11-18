@@ -22,9 +22,9 @@ createRoot(document.getElementById("root")!).render(
     <Header />
     <main id="conteudo">
       <Hero />
-      <About />
       <Mission />
       <Areas />
+      <About />
       <Lab />
       <Technologies />
       <Projects />

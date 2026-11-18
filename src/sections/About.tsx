@@ -1,153 +1,74 @@
 import { useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import "../styles/demos.css";
 
-const lessons = [
+const examples = [
   {
-    name: "Reconhecer imagens",
-    question: "Como um aplicativo reconhece uma imagem?",
-    intro:
-      "Uma imagem é uma grade de pixels. Compare as duas silhuetas e observe como o contorno muda.",
-    choices: ["Folha", "Estrela"],
-    feedback: [
-      "As bordas curvas e as pontas desenham uma folha.",
-      "As cinco pontas formam a silhueta de uma estrela.",
-    ],
-    note: "Um modelo de visão aprende pistas visuais comparando muitas imagens.",
+    name: "Vídeos",
+    question: "Já percebeu que alguns aplicativos recomendam vídeos parecidos com os que você gosta?",
+    explanation: "Os aplicativos podem analisar os vídeos que você assiste, curte ou ignora para recomendar outros conteúdos.",
+    choices: ["Games", "Música", "Esportes"],
+    results: ["Um vídeo sobre criar seu próprio jogo", "Um vídeo com novos ritmos para descobrir", "Um vídeo com lances de uma partida"],
+    summary: "Viu só? Sistemas de recomendação usam informações sobre suas preferências para sugerir conteúdos!",
+    label: "Demonstração simplificada: a recomendação foi definida para cada categoria.",
   },
   {
-    name: "Interpretar perguntas",
-    question: "Como uma IA entende uma pergunta?",
-    intro:
-      "Troque a primeira palavra e veja como muda o tipo de resposta esperada.",
-    choices: ["Onde?", "Quando?"],
-    feedback: [
-      "“Onde começa o curso?” pede um lugar.",
-      "“Quando começa o curso?” pede um momento.",
-    ],
-    note: "Modelos de linguagem usam as relações entre palavras para interpretar o contexto.",
+    name: "Fotos",
+    question: "Como um celular consegue identificar o que aparece em uma foto?",
+    explanation: "Alguns sistemas de IA aprendem padrões analisando muitas imagens. Depois, usam esses padrões para reconhecer objetos em novas fotos.",
+    choices: ["Gato", "Cachorro", "Bicicleta"],
+    results: ["Gato identificado", "Cachorro identificado", "Bicicleta identificada"],
+    summary: "Um sistema real compara padrões da foto com os exemplos que aprendeu.",
+    label: "Demonstração ilustrativa: as figuras já têm respostas definidas. Não há reconhecimento real de imagens.",
   },
   {
-    name: "Encontrar padrões",
-    question: "Como um sistema identifica padrões?",
-    intro:
-      "Escolha uma sequência. Observe os valores conhecidos e a continuação sugerida.",
-    choices: ["Dobrar", "Somar três"],
-    feedback: [
-      "2, 4, 8… Se o valor dobra, o próximo é 16.",
-      "2, 5, 8… Se somamos três, o próximo é 11.",
-    ],
-    note: "Várias regras podem explicar poucos exemplos. Novos dados ajudam a testar a hipótese.",
+    name: "Perguntas",
+    question: "Como uma IA consegue responder quando você faz uma pergunta?",
+    explanation: "Modelos de linguagem aprendem padrões a partir de grandes quantidades de textos e usam esses padrões para produzir respostas.",
+    choices: ["O que é Inteligência Artificial?", "Onde encontramos IA no dia a dia?", "Preciso saber programar para começar?"],
+    results: ["É uma tecnologia que ajuda computadores a reconhecer imagens, entender perguntas e encontrar padrões.", "Em recomendações de vídeos, mapas, tradutores e reconhecimento de imagens.", "Não. A curiosidade é um ótimo começo, e programar é algo que você pode aprender."],
+    summary: "As respostas desta conversa foram escritas antes da sua escolha.",
+    label: "Conversa de demonstração com respostas predefinidas.",
   },
-];
-
-function PixelSample({ star }: { star: boolean }) {
-  const cells = [];
-  for (let y = -10; y <= 10; y++) {
-    for (let x = -10; x <= 10; x++) {
-      const angle = Math.atan2(y, x) + Math.PI / 2;
-      const radius = Math.hypot(x, y);
-      const lit = star
-        ? radius <=
-          4.8 /
-            Math.cos(
-              (((angle % (Math.PI * 0.4)) + Math.PI * 0.4) % (Math.PI * 0.4)) -
-                Math.PI * 0.2,
-            ) +
-            3 * Math.cos(5 * angle)
-        : Math.abs(x + y * 0.62) <= 5.4 * Math.cos((y * Math.PI) / 18) &&
-          Math.abs(y) <= 9;
-      cells.push(<i key={x + "," + y} className={lit ? "lit" : ""} />);
-    }
-  }
-  return (
-    <div className="pixel-specimen" aria-hidden="true">
-      {cells}
-    </div>
-  );
-}
+] as const;
 
 export default function About() {
   const [mode, setMode] = useState(0);
-  const [choice, setChoice] = useState(0);
-  const lesson = lessons[mode];
+  const [choice, setChoice] = useState<number | null>(null);
+  const reducedMotion = useReducedMotion();
+  const example = examples[mode];
   return (
-    <section
-      id="sobre"
-      className="discovery demo-section"
-      aria-labelledby="discovery-title"
-    >
+    <section id="sobre" className="discovery demo-section" aria-labelledby="discovery-title">
       <div className="wrap">
         <div className="demo-heading">
-          <div>
-            <p className="demo-label">Descoberta guiada</p>
-            <h2 id="discovery-title">Afinal, o que é IA?</h2>
-          </div>
-          <p>
-            Alguns sistemas aprendem com exemplos. Explore três ideias que já
-            fazem parte do seu dia.
-          </p>
+          <div><p className="demo-label">Descoberta guiada</p><h2 id="discovery-title">Afinal, o que é Inteligência Artificial?</h2></div>
+          <p className="discovery-lead">Você provavelmente já usou Inteligência Artificial hoje e nem percebeu!</p>
+        </div>
+        <div className="discovery-intro">
+          <p>Inteligência Artificial, ou IA, é uma tecnologia que permite aos computadores realizar tarefas como reconhecer imagens, entender perguntas e encontrar padrões.</p>
+          <p>Alguns sistemas de IA aprendem analisando muitos exemplos. Assim, conseguem fazer previsões, recomendações ou identificar informações.</p>
         </div>
         <div className="discovery-deck">
-          <div
-            className="lesson-choices"
-            role="group"
-            aria-label="Escolha uma demonstração"
-          >
-            {lessons.map((item, i) => (
-              <button
-                key={item.name}
-                aria-pressed={mode === i}
-                onClick={() => {
-                  setMode(i);
-                  setChoice(0);
-                }}
-              >
-                {item.name}
-                <span aria-hidden="true">↗</span>
-              </button>
-            ))}
+          <div className="lesson-choices" role="group" aria-label="Escolha uma demonstração">
+            {examples.map((item, index) => <button key={item.name} type="button" aria-pressed={mode === index} onClick={() => { setMode(index); setChoice(null); }}>{item.name}<span aria-hidden="true">↗</span></button>)}
           </div>
-          <div className="specimen-stage">
-            {mode === 0 ? (
-              <PixelSample star={choice === 1} />
-            ) : mode === 1 ? (
-              <div className="token-scene" aria-hidden="true">
-                <strong>{choice ? "Quando" : "Onde"}</strong>
-                <span>começa</span>
-                <span>o curso?</span>
-              </div>
-            ) : (
-              <div className="sequence-scene" aria-hidden="true">
-                {(choice ? [2, 5, 8, 11] : [2, 4, 8, 16]).map((v) => (
-                  <i key={v} style={{ height: v * 6 + 30 + "px" }}>
-                    {v}
-                  </i>
-                ))}
-              </div>
-            )}
+          <div className="specimen-stage" aria-hidden="true">
+            {mode === 0 && <div className="recommend-scene"><span>▶</span><span>♫</span><span>◆</span></div>}
+            {mode === 1 && <div className="object-scene"><span>{choice === 0 ? "🐈" : choice === 1 ? "🐕" : choice === 2 ? "🚲" : "▧"}</span><i>ANALISANDO IMAGEM</i></div>}
+            {mode === 2 && <div className="chat-scene"><span>?</span><span>↳</span></div>}
           </div>
           <div className="lesson-body">
-            <h3>{lesson.question}</h3>
-            <p>{lesson.intro}</p>
-            <div
-              className="sample-switch"
-              role="group"
-              aria-label="Alterar exemplo"
-            >
-              {lesson.choices.map((label, i) => (
-                <button
-                  key={label}
-                  aria-pressed={choice === i}
-                  onClick={() => setChoice(i)}
-                >
-                  {label}
-                </button>
-              ))}
+            <h3>{example.question}</h3><p>{example.explanation}</p>
+            <div className="sample-switch" role="group" aria-label="Escolha um exemplo">
+              {example.choices.map((label, index) => <button type="button" key={label} aria-pressed={choice === index} onClick={() => setChoice(index)}>{label}</button>)}
             </div>
-            <div aria-live="polite">
-              <strong>{lesson.feedback[choice]}</strong>
-              <p>{lesson.note}</p>
+            <div className="discovery-result" aria-live="polite">
+              {choice === null ? <p>Escolha uma opção para ver o resultado.</p> : <motion.div key={`${mode}-${choice}`} initial={reducedMotion ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .2 }}>
+                {mode === 2 && <p className="chat-question">Você: {example.choices[choice]}</p>}
+                <strong>{mode === 2 ? "Assistente: " : "Resultado: "}{example.results[choice]}</strong><p>{example.summary}</p>
+              </motion.div>}
             </div>
+            <small className="discovery-note">{example.label}</small>
           </div>
         </div>
       </div>
