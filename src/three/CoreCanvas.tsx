@@ -4,7 +4,9 @@ import { useEffect, useMemo, useRef } from "react";
 import * as T from "three";
 import { createCore, studioTexture } from "./coreModel";
 
-function Model({ signal, ready }: { signal: number; ready: () => void }) {
+type CoreProps = { signal: number; ready: () => void; failed: () => void };
+
+function Model({ signal, ready, failed }: CoreProps) {
   const { scene, gl, performance } = useThree();
   const model = useMemo(createCore, []);
   const elapsed = useRef(0),
@@ -14,9 +16,11 @@ function Model({ signal, ready }: { signal: number; ready: () => void }) {
     if (signal) pulse.current = 1;
   }, [signal]);
   useEffect(() => {
+    gl.domElement.addEventListener("webglcontextlost", failed);
     const texture = studioTexture();
     scene.environment = texture;
     return () => {
+      gl.domElement.removeEventListener("webglcontextlost", failed);
       scene.environment = null;
       texture.dispose();
       const materials = new Set<T.Material>();
@@ -28,7 +32,7 @@ function Model({ signal, ready }: { signal: number; ready: () => void }) {
       });
       materials.forEach((material) => material.dispose());
     };
-  }, [gl, scene, model]);
+  }, [gl, scene, model, failed]);
   useFrame(({ pointer }, dt) => {
     if (!painted.current) {
       painted.current = true;
@@ -65,28 +69,15 @@ function Model({ signal, ready }: { signal: number; ready: () => void }) {
     </>
   );
 }
-export default function CoreCanvas({
-  signal,
-  ready,
-  failed,
-}: {
-  signal: number;
-  ready: () => void;
-  failed: () => void;
-}) {
+export default function CoreCanvas(props: CoreProps) {
   return (
     <Canvas
       dpr={[1, 1.4]}
       performance={{ min: 0.65 }}
       gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
       camera={{ position: [0, 0.27, 5.35], fov: 39 }}
-      onCreated={({ gl }) =>
-        gl.domElement.addEventListener("webglcontextlost", failed, {
-          once: true,
-        })
-      }
     >
-      <Model signal={signal} ready={ready} />
+      <Model {...props} />
     </Canvas>
   );
 }
